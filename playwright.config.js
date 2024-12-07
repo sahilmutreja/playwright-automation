@@ -5,7 +5,12 @@ import { defineConfig } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
+
   testDir: './tests',
+  timeout: 10 * 1000, // timeout for any step execution
+  expect: {
+    timeout: 10 * 1000   // timeout for assertion steps
+  },
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -25,6 +30,6 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
     browserName: 'chromium',
     headless: false
-  } 
+  }
 });
 
