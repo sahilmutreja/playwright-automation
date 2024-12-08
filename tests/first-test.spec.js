@@ -7,7 +7,7 @@ test('open google page', async ({ page }) => {
     await expect(page).toHaveTitle('Google')
 });
 
-test('open practice automation website', async ({page}) => {
+test('open practice automation website', async ({ page }) => {
     await page.goto('https://practicetestautomation.com/')
     // click practice tab
     await page

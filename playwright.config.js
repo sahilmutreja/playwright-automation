@@ -7,9 +7,9 @@ import { defineConfig } from '@playwright/test';
 module.exports = defineConfig({
 
   testDir: './tests',
-  timeout: 10 * 1000, // timeout for any step execution
+  timeout: 20 * 1000, // timeout for each step execution
   expect: {
-    timeout: 10 * 1000   // timeout for assertion steps
+    timeout: 5 * 1000   // timeout for each assertion step
   },
   /* Run tests in files in parallel */
   fullyParallel: false,
