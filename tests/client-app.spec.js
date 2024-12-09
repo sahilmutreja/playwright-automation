@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.only('login page controls test', async ({ page }) => {
+test.only('UI controls test', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
     await page.locator('#username').fill('test-user');
     await page.locator('#password').fill('test-password');
@@ -14,7 +14,7 @@ test.only('login page controls test', async ({ page }) => {
         .toHaveAttribute('class', 'blinkingText');
 });
 
-test('child page test', async ({ page }) => {
+test('Child page test', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
     const username = page.locator('#username');
     // Get domain from new page
@@ -31,7 +31,7 @@ test('child page test', async ({ page }) => {
     console.log('Username - ' + await username.inputValue());
 });
 
-test('Test login and print all product names', async ({ page }) => {
+test('Print all product names test', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/client/');
     await page.locator('#userEmail').fill('Woyoba4364@iminko.com');
     await page.locator('#userPassword').fill('Woyoba4364@iminko.com');

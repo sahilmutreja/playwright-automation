@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'; 
 
-test('open practice automation website', async ({ page }) => {
+test('Login on any practice automation website', async ({ page }) => {
     await page.goto('https://practicetestautomation.com/');
     // click practice tab
     let txtUsername = page.locator('#username');
