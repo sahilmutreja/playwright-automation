@@ -11,13 +11,26 @@
     npx playwright test 
 
 ### Execute tests in specific file using - 
+    npx playwright test <test-file>
+    Example: 
     npx playwright test tests/login-test.spec.js
 
 ### Execute tests with matching regex in any file using - 
+    npx playwright test --grep <partial name of the test>
+    Example: 
     npx playwright test --grep 'UI'
 
 ### Debug tests using debug flag - 
-    npx playwright test tests/login-test.spec.js --debug 
+    npx playwright test <test-file> --debug 
+    Example: 
+    npx playwright test --grep 'UI'
 
 ### Record and generate test script for any website url 
+    npx playwright codegen <URL of the website>
+    Example: 
     npx playwright codegen https://google.com/
+
+### View traces locally 
+    npx playwright show-trace <path to the traces.zip file>
+    Example: 
+    npx playwright show-trace ./test-results/open-google-test-open-google-page/trace.zip

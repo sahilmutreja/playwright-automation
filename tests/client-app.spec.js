@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.only('UI controls test', async ({ page }) => {
+test('UI controls test', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
     await page.locator('#username').fill('test-user');
     await page.locator('#password').fill('test-password');
