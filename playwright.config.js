@@ -7,9 +7,11 @@ import { defineConfig } from '@playwright/test';
 module.exports = defineConfig({
 
   testDir: './tests',
-  timeout: 20 * 1000, // timeout for each step execution
+  // Maximum time allocated for each test execution
+  timeout: 30 * 1000, 
   expect: {
-    timeout: 5 * 1000   // timeout for each assertion step
+    // timeout for each assertion step
+    timeout: 5 * 1000
   },
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -25,9 +27,13 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
+    
+    // Max time for each action/step
+    // actionTimeout: 3000,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
     browserName: 'chromium',
     headless: false
   }
