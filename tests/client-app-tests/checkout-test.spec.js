@@ -1,9 +1,8 @@
 import { test, expect } from '@playwright/test';
-import exp from 'constants';
-
 
 test('checkout product test', async ({ page }) => {
     const email = 'Woyoba4364@iminko.com';
+    const productName = 'IPHONE 13 PRO';
     // Goto page
     await page.goto('https://rahulshettyacademy.com/client/');
 
@@ -19,12 +18,12 @@ test('checkout product test', async ({ page }) => {
     const allProducts = page.locator('.card-body');
     for (let index = 0; index < await allProducts.count(); index++) {
         const product = allProducts.nth(index);
-        if (await product.locator('h5>b').textContent() == 'IPHONE 13 PRO')
+        if (await product.locator('h5>b').textContent() == productName)
             await product.locator('button').last().click();
     }
     // Go to cart and verify if product is added and checkout
     await page.locator("[routerlink*='cart']").click()
-    await expect(page.locator('h3', { hasText: 'IPHONE 13 PRO' })).toBeVisible();
+    await expect(page.locator('h3', { hasText: productName })).toBeVisible();
     await page.locator('text=Checkout').click();
 
     // Enter India as country and choose correct option from the dynamic options
@@ -53,5 +52,5 @@ test('checkout product test', async ({ page }) => {
     await rowWithOrderId.locator('.btn-primary').click();
     
     // Asser if our product is present on order summary page
-    await expect(page.locator('[class="title"]')).toHaveText('IPHONE 13 PRO');
+    await expect(page.locator('[class="title"]')).toHaveText(productName);
 });
