@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('checkout product test', async ({ page }) => {
     const email = 'Woyoba4364@iminko.com';
-    const productName = 'IPHONE 13 PRO';
+    const productName = 'ADIDAS ORIGINAL';
     // Goto page
     await page.goto('https://rahulshettyacademy.com/client/');
 
@@ -28,11 +28,16 @@ test('checkout product test', async ({ page }) => {
 
     // Enter India as country and choose correct option from the dynamic options
     await page.locator('[placeholder="Select Country"]').pressSequentially('Ind');
-    // await page.getByText('India', { exact: true }).waitFor();
-    // await page.getByRole('India', { exact: true }).click();
+    // await page.locator('India', { exact: true }).waitFor();
+    // await page.getByText('India', { exact: true }).click();
     const dropdown = page.locator('.form-group .ta-results');
+    const options = dropdown.locator('button>span');
     await dropdown.waitFor()
-    dropdown.getByText('India', { exact: true }).click();
+    for (let i = 0; i < await options.count(); i++) {
+        if (await options.nth(i).textContent() == ' India') {
+            options.nth(i).click();
+        }
+    }
 
     // Verify if logged in email is shown on checkout
     await expect(page.locator('.user__name>label')).toHaveText(email);
@@ -41,16 +46,15 @@ test('checkout product test', async ({ page }) => {
     await page.locator('.action__submit').click();
     await expect(page.locator('.hero-primary'))
         .toHaveText(' Thankyou for the order. ');
-    const orderId = await page.locator("label[class='ng-star-inserted']").textContent();
-    
-    // Go to order history page and check if order id is present 
-    await page.locator('label[routerlink*="myorders"]').click();
-    const rowWithOrderId = page.getByRole('row', { name: '6758cba6e2b5443b1fee67b8' });
-    await expect(rowWithOrderId).toBeVisible();
+    let orderId = await page.locator("label[class='ng-star-inserted']").textContent();
+    orderId = orderId.split(' ')[2];
+    console.log('Order Id = ' + orderId);
 
-    // Click view button in the row for our order id
-    await rowWithOrderId.locator('.btn-primary').click();
-    
-    // Asser if our product is present on order summary page
+    // Go to order history page and find the row with order id and click view details
+    await page.locator('label[routerlink*="myorders"]').click();
+    await expect(page.locator('tbody tr:first-child>th')).toHaveText(orderId);
+    await page.locator('tbody tr:first-child .btn-primary').click();
+
+    // Assert if our product is present on order summary page
     await expect(page.locator('[class="title"]')).toHaveText(productName);
 });
