@@ -1,6 +1,19 @@
 # playwright-automation
 
-### When starting a fresh playwright project - 
+## Tutorials Index 
+1. [Basic test to open google website.](tests/open-google-test.spec.js)
+2. [Login test](tests/login-test.spec.js)
+3. [Basic UI controls test](tests/login-page-practice/ui-controls-test.spec.js)
+4. [Test to check if a new child page is opened](tests/login-page-practice/child-page-test.spec.js)
+5. [Test to learn different types of waits in playwright](tests/client-app-tests/adding-waits-test.spec.js)
+6. [Test to checkout a product from an ecommerce website](tests/client-app-tests/checkout-test.spec.js)
+7. [Learn different getBy locators in playwright](tests/getby-locators-test.spec.js)
+8. [Test to set and verify a calendar date](tests/Calendar.spec.js)
+
+<hr/>
+
+## Useful terminal commands 
+### When starting a fresh playwright project 
     1. install node (brew install node)
     2. install playwright (npm init playwright)
 
