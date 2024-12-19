@@ -25,6 +25,9 @@
     Example: 
     npx playwright test --grep 'UI'
 
+### Run required tests from the playwright test runner - 
+    npx playwright test --ui 
+
 ### Record and generate test script for any website url 
     npx playwright codegen <URL of the website>
     Example: 
