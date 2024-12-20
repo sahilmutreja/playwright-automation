@@ -10,6 +10,7 @@
 7. [Learn different getBy locators in playwright](tests/getby-locators-test.spec.js)
 8. [Test to set and verify a calendar date](tests/Calendar.spec.js)
 9. [More validations possible in playwright](tests/more-validations.spec.js)
+10. [Web + API Testing combination](tests/client-app-tests/checkout-with-api-test.spec.js)
 
 <hr/>
 
