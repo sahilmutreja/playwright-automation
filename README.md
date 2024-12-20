@@ -9,6 +9,7 @@
 6. [Test to checkout a product from an ecommerce website](tests/client-app-tests/checkout-test.spec.js)
 7. [Learn different getBy locators in playwright](tests/getby-locators-test.spec.js)
 8. [Test to set and verify a calendar date](tests/Calendar.spec.js)
+9. [More validations possible in playwright](tests/more-validations.spec.js)
 
 <hr/>
 
