@@ -1,7 +1,11 @@
 export class CartPage {
-    constructor(page, productName) {
-        this.product = page.locator('h3', { hasText: productName });
+    constructor(page) {
+        this.page = page;
         this.btnCheckout = page.locator('text=Checkout');
+    }
+
+    getProduct(productName) {
+        return this.page.locator('h3', { hasText: productName });
     }
 
     async goToCheckout() {

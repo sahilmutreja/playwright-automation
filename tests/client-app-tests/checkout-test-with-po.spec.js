@@ -1,48 +1,35 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage';
-import { DashboardPage } from '../../pages/DashboardPage';
-import { CartPage } from '../../pages/CartPage';
-import { CheckoutPage } from '../../pages/CheckoutPage';
-import { ThankYouPage } from '../../pages/ThankYouPage';
-import { OrderHistoryPage } from '../../pages/OrderHistoryPage';
-import { OrderDetailsPage } from '../../pages/OrderDetailsPage';
-
+import { PageObjectManager } from '../../utils/PageObjectManager.js'
 
 test('test product checkout with pages', async ({ page }) => {
     const email = 'Woyoba4364@iminko.com';
     const productName = 'ADIDAS ORIGINAL';
     const partialCountryName = 'Ind';
+    const pageManager = new PageObjectManager(page);
 
-    const loginPage = new LoginPage(page)
-    await loginPage.goTo();
-    await loginPage.login(email, email);
+    await pageManager.loginPage.goTo();
+    await pageManager.loginPage.login(email, email);
 
-    const dashboardPage = new DashboardPage(page);
-    await dashboardPage.waitForPageToLoad();
-    await dashboardPage.searchProductAndAddToCart(productName);
-    await dashboardPage.goToCartPage();
+    await pageManager.dashboardPage.waitForPageToLoad();
+    await pageManager.dashboardPage.searchProductAndAddToCart(productName);
+    await pageManager.dashboardPage.goToCartPage();
 
-    const cartPage = new CartPage(page, productName);
-    await expect(cartPage.product).toBeVisible();
-    await cartPage.goToCheckout();
+    await expect(pageManager.cartPage.getProduct(productName)).toBeVisible();
+    await pageManager.cartPage.goToCheckout();
 
-    const checkoutPage = new CheckoutPage(page);
-    await checkoutPage.fillCountry(partialCountryName);
-    await expect(checkoutPage.email).toHaveText(email);
-    await checkoutPage.placeOrder();
+    await pageManager.checkoutPage.fillCountry(partialCountryName);
+    await expect(pageManager.checkoutPage.email).toHaveText(email);
+    await pageManager.checkoutPage.placeOrder();
 
-    const thankYouPage = new ThankYouPage(page);
-    await expect(thankYouPage.thankYouMessage)
-                .toContainText('Thankyou for the order.');
-    let orderIdString = await thankYouPage.getOrderId();
-    await thankYouPage.goToOrderHistoryPage();
+    await expect(pageManager.thankYouPage.thankYouMessage)
+        .toContainText('Thankyou for the order.');
+    let orderIdString = await pageManager.thankYouPage.getOrderId();
+    await pageManager.thankYouPage.goToOrderHistoryPage();
 
-    const orderHistoryPage = new OrderHistoryPage(page);
-    await expect(orderHistoryPage.orderId).toHaveText(orderIdString);
-    await orderHistoryPage.viewOrderDetails();
+    await expect(pageManager.orderHistoryPage.orderId).toHaveText(orderIdString);
+    await pageManager.orderHistoryPage.viewOrderDetails();
 
     // Assert if our product is present on order summary page
-    const orderDetailsPage = new OrderDetailsPage(page);
-    await expect(orderDetailsPage.productTitle)
-                .toHaveText(productName);
+    await expect(pageManager.orderDetailsPage.productTitle)
+        .toHaveText(productName);
 });
