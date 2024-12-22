@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { APIUtils } from '../utils/APIUtils';
+import { APIUtils } from '../../utils/APIUtils'
 
 let apiUtils, loginPayload = {
     userEmail: "Woyoba4364@iminko.com",
@@ -19,7 +19,7 @@ test.beforeAll('token test', async ({ request }) => {
     await apiUtils.setOrderId(orderPayload);
 });
 
-test('Api login checkout product test', async ({ page }) => {
+test('checkout product with api login test', async ({ page }) => {
     const email = 'Woyoba4364@iminko.com';
     const productName = 'ADIDAS ORIGINAL'; 
 

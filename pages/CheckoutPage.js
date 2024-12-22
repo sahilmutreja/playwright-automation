@@ -6,13 +6,14 @@ export class CheckoutPage{
         this.btnPlaceOrder = page.locator('.action__submit');
     }
 
-    async fillCountry(country){
-        await this.countryDropDown.pressSequentially(country);
+    async fillCountry(partialCountryName, fullCountryName){
+        await this.countryDropDown.pressSequentially(partialCountryName);
         const options = this.dropdown.locator('button>span');
         await this.dropdown.waitFor()
         for (let i = 0; i < await options.count(); i++) {
-            if (await options.nth(i).textContent() == ' India') {
-                options.nth(i).click();
+            let countryNameInOption = await options.nth(i).textContent();
+            if (countryNameInOption.trim() == fullCountryName.trim()) {
+                await options.nth(i).click();
             }
         }
     }
