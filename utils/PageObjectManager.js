@@ -1,4 +1,5 @@
 import { LoginPage } from '../pages/LoginPage';
+import { LoginPractisePage } from '../pages/LoginPractisePage';
 import { DashboardPage } from '../pages/DashboardPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
@@ -9,6 +10,7 @@ import { OrderDetailsPage } from '../pages/OrderDetailsPage';
 export class PageObjectManager {
     constructor(page) {
         this.loginPage = new LoginPage(page);
+        this.loginPractisePage = new LoginPractisePage(page);
         this.dashboardPage = new DashboardPage(page);
         this.cartPage = new CartPage(page);
         this.checkoutPage = new CheckoutPage(page);

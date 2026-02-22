@@ -1,6 +1,7 @@
 # playwright-automation
 
 ## Tutorials Index 
+
 1. [Basic test to open google website.](tests/open-google-test.spec.js)
 2. [Login test](tests/login-test.spec.js)
 3. [Basic UI controls test](tests/login-page-practice/ui-controls-test.spec.js)
@@ -11,6 +12,8 @@
 8. [Test to set and verify a calendar date](tests/Calendar.spec.js)
 9. [More validations possible in playwright](tests/more-validations.spec.js)
 10. [Web + API Testing combination](tests/client-app-tests/checkout-with-api-test.spec.js)
+11. [LoginPractise: sign in and verify product present](tests/loginpage-practise.spec.js)
+
 
 <hr/>
 
